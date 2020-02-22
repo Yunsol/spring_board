@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.study.board" table="BOARD">
+		<id name="id" column="id" type="java.lang.Long">
+			<generator class="assigned" />
+		</id>
+		<property name="title" column="title" type="java.lang.String"/>
+		<property name="content" column="content" type="java.lang.String"/>
+		<property name="rgstDate" column="rgst_date" type="java.util.Date"/>
+	</class>
+</hibernate-mapping>
