@@ -16,7 +16,7 @@
 	<c:forEach items="${boardList}" var="board" varStatus="status">
 			<tr>
 				<td>[${board.id}]</td>
-				<td>${board.title}</td>
+				<td><a href="/board/read?id=${board.id}">${board.title}</a></td>
 				<td>${board.rgstDate}</td>
 				<td><a href="/board/delete?id=${board.id}">삭제</a></td>
 			</tr>

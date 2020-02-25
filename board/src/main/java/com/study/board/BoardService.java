@@ -19,12 +19,23 @@ public class BoardService
 		Board board = new Board();
 		return boardDAO.selectList(board);
 	}
-	
-	public void saveBoard(Board board) {
+
+	public void saveBoard(Board board)
+	{
 		boardDAO.insertBoard(board);
 	}
-	
-	public void deleteBoard(Long id) {
+
+	public void deleteBoard(Long id)
+	{
 		boardDAO.deleteBoard(id);
+	}
+
+	public void updateBoard(Board board)
+	{
+		boardDAO.updateBoard(board);
+	}
+	
+	public Board readBoard(Long id) {
+		return boardDAO.readBoard(id);
 	}
 }

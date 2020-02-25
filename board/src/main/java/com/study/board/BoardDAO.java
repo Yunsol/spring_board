@@ -1,5 +1,6 @@
 package com.study.board;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -29,6 +30,7 @@ public class BoardDAO
 		return sessionFactory.getCurrentSession();
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Board> selectList(Board board)
 	{
 		// Hibernate 세션 객체 Open!
@@ -59,7 +61,7 @@ public class BoardDAO
 
 		return null;
 	}
-	
+
 	public int selectCount(Board boardModel)
 	{
 		Session session = this.sessionFactory.openSession();
@@ -83,6 +85,7 @@ public class BoardDAO
 
 	public void insertBoard(Board board)
 	{
+		board.setRgstDate(new Date());
 		getSession().save(board);
 	}
 
@@ -95,5 +98,10 @@ public class BoardDAO
 	public void updateBoard(Board board)
 	{
 		getSession().update(board);
+	}
+
+	public Board readBoard(Long id)
+	{
+		return (Board) getSession().get(Board.class, id);
 	}
 }
