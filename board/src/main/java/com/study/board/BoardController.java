@@ -2,12 +2,15 @@ package com.study.board;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -32,8 +35,10 @@ public class BoardController
 	}
 	
 	@RequestMapping(value = "/board/save", method = RequestMethod.POST)
-	public String save(@ModelAttribute Board board) throws Exception {
-		boardService.saveBoard(board);
+	public String save(@ModelAttribute Board board, MultipartHttpServletRequest req) throws Exception {
+		System.out.println("1111" + board.getContent());
+		boardService.saveBoard(board, req);
+		
 		return "redirect:/";
 	}
 	

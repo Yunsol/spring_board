@@ -1,6 +1,5 @@
 package com.study.board;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -12,6 +11,8 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.study.board.file.BoardFile;
 
 @Repository
 @Transactional
@@ -85,7 +86,6 @@ public class BoardDAO
 
 	public void insertBoard(Board board)
 	{
-		board.setRgstDate(new Date());
 		getSession().save(board);
 	}
 
@@ -103,5 +103,10 @@ public class BoardDAO
 	public Board readBoard(Long id)
 	{
 		return (Board) getSession().get(Board.class, id);
+	}
+
+	public void uploadFile(BoardFile file) throws Exception
+	{
+		getSession().save(file);
 	}
 }

@@ -1,12 +1,15 @@
 package com.study.board;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -14,27 +17,32 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
 
+import com.study.board.file.BoardFile;
+
 @Entity
-@Table(name="board")
+@Table(name = "board")
 public class Board
 {
 	/** 번호 */
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name ="id", updatable = false, nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", updatable = false, nullable = false)
 	private Long id;
 	/** 제목 */
-	@Column(name="title", nullable=false, length=1000)
+	@Column(name = "title", nullable = false, length = 1000)
 	private String title;
 	/** 내용 */
-	@Column(name="content", nullable=false, length=4000)
+	@Column(name = "content", nullable = false, length = 4000)
 	private String content;
 	/** 등록 일시 */
 	@Generated(GenerationTime.INSERT)
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="rgst_date", insertable = false)
+	@Column(name = "rgst_date", insertable = false)
 	private Date rgstDate;
-	
+
+	@OneToMany(mappedBy = "board")
+	private List<BoardFile> boardFiles = new ArrayList<BoardFile>();
+
 	/** 페이지 번호 */
 	private String pageNum = "1";
 	/** 목록 페이지 게시물 노출 수 */
@@ -83,7 +91,7 @@ public class Board
 	{
 		this.rgstDate = rgstDate;
 	}
-	
+
 	public String getPageNum()
 	{
 		return pageNum;
@@ -123,6 +131,16 @@ public class Board
 	public void setStartIndex(int startIndex)
 	{
 		this.startIndex = startIndex;
+	}
+
+	public List<BoardFile> getBoardFiles()
+	{
+		return boardFiles;
+	}
+
+	public void setBoardFiles(List<BoardFile> files)
+	{
+		this.boardFiles = files;
 	}
 
 }
