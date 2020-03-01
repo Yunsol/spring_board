@@ -8,7 +8,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Board Write</title>
 </head>
-<script ></script>
 <body>
 	<div class="continer">
 	BOARD READ PAGE

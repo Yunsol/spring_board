@@ -1,5 +1,6 @@
 package com.study.board;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,8 +24,10 @@ import com.study.board.file.BoardFile;
 
 @Entity
 @Table(name = "board")
-public class Board
+public class Board implements Serializable
 {
+	private static final long serialVersionUID = -7219541461466332459L;
+	
 	/** 번호 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.study.board.file.BoardFile;
+import com.study.common.CriPage;
 
 @Repository
 @Transactional
@@ -32,7 +33,7 @@ public class BoardDAO
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Board> selectList(Board board)
+	public List<Board> selectList(CriPage cri)
 	{
 		// Hibernate 세션 객체 Open!
 		Session session = this.sessionFactory.openSession();
@@ -41,9 +42,8 @@ public class BoardDAO
 			// 직관적인 Criteria query API 사용한 경우!
 			Criteria criteria = session.createCriteria(Board.class);
 			// 행의 범위 설정 LIMIT ?, ? 값을 의미
-			criteria.setMaxResults(board.getListCount());
-			criteria.setFirstResult(board.getStartIndex());
-
+			criteria.setMaxResults(cri.getPerPageNum());
+			criteria.setFirstResult(cri.getPageStart());
 			// 등록일시로 정렬 한다. (※컬럼명이 아니라 entity변수)
 			criteria.addOrder(Order.desc("rgstDate"));
 
@@ -63,7 +63,7 @@ public class BoardDAO
 		return null;
 	}
 
-	public int selectCount(Board boardModel)
+	public int selectCount()
 	{
 		Session session = this.sessionFactory.openSession();
 		try

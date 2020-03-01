@@ -16,7 +16,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.study.board.file.BoardFile;
+import com.study.common.CriPage;
 import com.study.common.FileUtils;
+import com.study.common.PageMaker;
 
 @Controller
 @RequestMapping("")
@@ -26,10 +28,16 @@ public class BoardController
 	private BoardService boardService;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String index(Model model)
+	public String index(Model model, @ModelAttribute("cri") CriPage cri)
 	{
-		List<Board> boardList = boardService.getBoardList();
+		List<Board> boardList = boardService.getBoardList(cri);
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		int totalNum = boardService.getBoardCount();
+		pageMaker.setTotalCount(totalNum);
+
 		model.addAttribute("boardList", boardList);
+		model.addAttribute("pageMaker", pageMaker);
 		return "index";
 	}
 

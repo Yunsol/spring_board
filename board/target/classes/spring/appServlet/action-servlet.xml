@@ -37,7 +37,7 @@
 		<beans:property name="driverClassName"
 			value="com.mysql.jdbc.Driver" />
 		<beans:property name="url"
-			value="jdbc:mysql://localhost:3306/study?characterEncoding=UTF-8&amp;serverTimezone=UTC" />
+			value="jdbc:mysql://localhost:3306/study?characterEncoding=UTF-8&amp;serverTimezone=UTC&amp;autoReconnect=true" />
 		<beans:property name="username" value="study" />
 		<beans:property name="password" value="!Study123" />
 	</beans:bean>

@@ -13,7 +13,7 @@
 <script type="text/javascript">
 	var wrongPswd = <%=wrongPswd%>;
 	if (wrongPswd) {
-		alert('비밀번호가 틀렸습니다. 다시 입력 웅앵 ');
+		alert('비밀번호가 틀렸습니다. 다시 입력 해주세요');
 	}
 </script>
 <body>

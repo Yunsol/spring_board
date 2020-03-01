@@ -7,9 +7,11 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.study.board.file.BoardFile;
+import com.study.common.CriPage;
 import com.study.common.FileUtils;
 
 @Service
@@ -22,19 +24,26 @@ public class BoardService
 	@Resource(name = "fileUtils")
 	private FileUtils fileUtils;
 
-	public List<Board> getBoardList()
+	public List<Board> getBoardList(CriPage cri)
 	{
-		Board board = new Board();
-		return boardDAO.selectList(board);
+		return boardDAO.selectList(cri);
+	}
+
+	public int getBoardCount()
+	{
+		return boardDAO.selectCount();
 	}
 
 	public void saveBoard(Board board, MultipartHttpServletRequest req) throws Exception
 	{
+		if (StringUtils.isEmpty(board.getPswd()))
+		{
+			board.setPswd("0");
+		}
 		boardDAO.insertBoard(board);
 
 		try
 		{
-
 			List<BoardFile> fList = fileUtils.uploadFileInfo(board, req);
 			for (BoardFile f : fList)
 			{
@@ -54,7 +63,6 @@ public class BoardService
 		for (BoardFile f : fList)
 		{
 			fileUtils.deleteFile(f.getPath());
-//			boardDAO.deleteFile(f);
 		}
 
 		boardDAO.deleteBoard(id);
