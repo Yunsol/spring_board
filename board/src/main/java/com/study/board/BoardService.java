@@ -49,6 +49,14 @@ public class BoardService
 
 	public void deleteBoard(Long id)
 	{
+		Board board = boardDAO.readBoard(id);
+		List<BoardFile> fList = board.getBoardFiles();
+		for (BoardFile f : fList)
+		{
+			fileUtils.deleteFile(f.getPath());
+//			boardDAO.deleteFile(f);
+		}
+
 		boardDAO.deleteBoard(id);
 	}
 

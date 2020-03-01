@@ -114,4 +114,9 @@ public class BoardDAO
 	{
 		return (BoardFile) getSession().get(BoardFile.class, id);
 	}
+
+	public void deleteFile(BoardFile file)
+	{
+		getSession().delete(file);
+	}
 }

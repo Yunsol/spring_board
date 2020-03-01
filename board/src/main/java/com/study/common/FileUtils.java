@@ -14,9 +14,8 @@ import com.study.board.Board;
 import com.study.board.file.BoardFile;
 
 /**
- * 
  * <desc>
- *  @Component 명칭과 사용하는 곳에서 @Resource name 명칭이 같아야함 
+ * @Component 명칭과 사용하는 곳에서 @Resource name 명칭이 같아야함
  */
 @Component("fileUtils")
 public class FileUtils
@@ -25,7 +24,7 @@ public class FileUtils
 
 	public List<BoardFile> uploadFileInfo(Board board, MultipartHttpServletRequest mpRequest) throws Exception
 	{
-//		MultipartHttpServletRequest mpRequest = (MultipartHttpServletRequest) req;
+		// MultipartHttpServletRequest mpRequest = (MultipartHttpServletRequest) req;
 		Iterator<String> iterator = mpRequest.getFileNames();
 
 		MultipartFile multipartFile = null;
@@ -36,7 +35,6 @@ public class FileUtils
 		List<BoardFile> list = new ArrayList<BoardFile>();
 
 		Long id = board.getId();
-		System.out.println("id??" + id);
 
 		File file = new File(filePath);
 		if (file.exists() == false)
@@ -55,8 +53,6 @@ public class FileUtils
 
 				file = new File(filePath + storedFileName);
 				multipartFile.transferTo(file);
-				
-				System.out.println("fileName::" + originalFileName);
 
 				BoardFile f = new BoardFile(board);
 				f.setBoardId(id);
@@ -72,5 +68,14 @@ public class FileUtils
 	public static String getRandomString()
 	{
 		return UUID.randomUUID().toString().replaceAll("-", "");
+	}
+
+	public void deleteFile(String storedFileName)
+	{
+		File file = new File(filePath + storedFileName);
+		if (file.exists())
+		{
+			file.delete();
+		}
 	}
 }

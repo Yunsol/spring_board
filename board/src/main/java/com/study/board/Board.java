@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -41,7 +42,7 @@ public class Board
 	@Column(name = "rgst_date", insertable = false)
 	private Date rgstDate;
 
-	@OneToMany(mappedBy = "board", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "board", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<BoardFile> boardFiles = new ArrayList<BoardFile>();
 
 	/** 페이지 번호 */
