@@ -50,8 +50,8 @@
 			</c:forEach>
 		</div>
 		<div id="buttonDiv">
-			<a href="${pageContext.request.contextPath}/board/checkPswd?id=${board.id}">수정</a>
-			<a href="${pageContext.request.contextPath}/board/delete?id=${board.id}">삭제</a>
+			<a href="${pageContext.request.contextPath}/board/checkPswd?id=${board.id}&nextPage=update">수정</a>
+			<a href="${pageContext.request.contextPath}/board/checkPswd?id=${board.id}&nextPage=delete">삭제</a>
 			<a href="${pageContext.request.contextPath}/">목록</a>
 		</div>
 	</div>

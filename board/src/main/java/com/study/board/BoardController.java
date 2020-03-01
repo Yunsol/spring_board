@@ -48,11 +48,24 @@ public class BoardController
 		return "redirect:/";
 	}
 
-	@RequestMapping(value = "/board/delete", method = RequestMethod.GET)
-	public String delete(Long id) throws Exception
+	@RequestMapping(value = "/board/delete", method = RequestMethod.POST)
+	public ModelAndView delete(Long id, String pswd) throws Exception
 	{
-		boardService.deleteBoard(id);
-		return "redirect:/";
+		Board board = boardService.readBoard(id);
+		ModelAndView mv = new ModelAndView();
+		if (board.getPswd().equals(pswd))
+		{
+			boardService.deleteBoard(id);
+			mv.setViewName("redirect:/");
+		}
+		else
+		{
+			mv.addObject("board", board);
+			mv.addObject("wrongPswd", true);
+			mv.addObject("id", id);
+			mv.setViewName("board/check.pswd");
+		}
+		return mv;
 	}
 
 	@RequestMapping(value = "/board/read", method = RequestMethod.GET)
@@ -113,11 +126,13 @@ public class BoardController
 	}
 
 	@RequestMapping(value = "/board/checkPswd", method = RequestMethod.GET)
-	public ModelAndView checkPswd(Long id, Model model)
+	public ModelAndView checkPswd(Long id, String nextPage, Model model)
 	{
 		Board board = boardService.readBoard(id);
 		model.addAttribute("board", board);
 		ModelAndView mv = new ModelAndView("board/check.pswd");
+		System.out.println("nextPage::" + nextPage);
+		mv.addObject("nextPage", nextPage);
 		return mv;
 	}
 }

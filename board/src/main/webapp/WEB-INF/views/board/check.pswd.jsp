@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%><%
 	Boolean wrongPswd = (Boolean) request.getAttribute("wrongPswd");
+	String nextPage = (String) request.getAttribute("nextPage");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html>
 <head>
@@ -19,7 +20,7 @@
 	<div class="continer">
 	BOARD CHECK PASSWORD
 	<section id="container">
-		<form role="form" method="post" action="${pageContext.request.contextPath }/board/update">
+		<form role="form" method="post" action="${pageContext.request.contextPath }/board/<%=nextPage%>">
 			<input type="hidden" name="id" value="${board.id}"/>
 			<div>
 				<label>글 비밀번호</label>
@@ -27,7 +28,7 @@
 			</div>
 			<div>
 				<button type="submit">확인</button>
-				<button onclick="location.href=${pageContext.request.contextPath}/">목록</button>
+				<a href="${pageContext.request.contextPath}/">목록</button>
 			</div>
 		</form>
 	</section>

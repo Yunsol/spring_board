@@ -18,7 +18,6 @@
 			<td>제목</td>
 			<td>작성일시</td>
 			<td>첨부여부</td>
-			<td>삭제</td>
 		</tr>
 		<c:forEach items="${boardList}" var="board" varStatus="status">
 				<tr>
@@ -36,7 +35,6 @@
 					         </c:otherwise>
 					    </c:choose>
 					</td>
-					<td><a href="/board/delete?id=${board.id}">삭제</a></td>
 				</tr>
 			<br>
 		</c:forEach>
