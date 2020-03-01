@@ -30,10 +30,8 @@ public class BoardService
 
 	public void saveBoard(Board board, MultipartHttpServletRequest req) throws Exception
 	{
-		System.out.println(board.getContent());
 		boardDAO.insertBoard(board);
 
-		System.out.println(board.getId());
 		try
 		{
 
@@ -62,5 +60,10 @@ public class BoardService
 	public Board readBoard(Long id)
 	{
 		return boardDAO.readBoard(id);
+	}
+
+	public BoardFile readBoardFile(Long id)
+	{
+		return boardDAO.readFile(id);
 	}
 }

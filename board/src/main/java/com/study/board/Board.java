@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -40,7 +41,7 @@ public class Board
 	@Column(name = "rgst_date", insertable = false)
 	private Date rgstDate;
 
-	@OneToMany(mappedBy = "board")
+	@OneToMany(mappedBy = "board", fetch = FetchType.EAGER)
 	private List<BoardFile> boardFiles = new ArrayList<BoardFile>();
 
 	/** 페이지 번호 */

@@ -15,6 +15,11 @@ import com.study.board.Board;
 @Table(name = "files")
 public class BoardFile
 {
+	public BoardFile()
+	{
+		super();
+	}
+
 	public BoardFile(Board board)
 	{
 		super();

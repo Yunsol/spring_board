@@ -109,4 +109,9 @@ public class BoardDAO
 	{
 		getSession().save(file);
 	}
+
+	public BoardFile readFile(Long id)
+	{
+		return (BoardFile) getSession().get(BoardFile.class, id);
+	}
 }

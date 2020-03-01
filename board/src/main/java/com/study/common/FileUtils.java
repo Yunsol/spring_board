@@ -21,7 +21,7 @@ import com.study.board.file.BoardFile;
 @Component("fileUtils")
 public class FileUtils
 {
-	public final String filePath = "/Users/choyunsol/git/repository/";
+	public static final String filePath = "/Users/choyunsol/git/repository/";
 
 	public List<BoardFile> uploadFileInfo(Board board, MultipartHttpServletRequest mpRequest) throws Exception
 	{

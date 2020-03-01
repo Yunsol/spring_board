@@ -10,18 +10,18 @@
 </head><%
 	pageContext.setAttribute("newLine", "\n");
 %><body>
-	<a href="${pageContext.request.contextPath }/board/write">글쓰기</a>
 	<c:set var="count" value="${fn:length(boardList)}" />
+	<a href="${pageContext.request.contextPath }/board/write">글쓰기</a>
 	<table width="510" border="1">
-	<c:forEach items="${boardList}" var="board" varStatus="status">
-			<tr>
-				<td>[${board.id}]</td>
-				<td><a href="/board/read?id=${board.id}">${board.title}</a></td>
-				<td>${board.rgstDate}</td>
-				<td><a href="/board/delete?id=${board.id}">삭제</a></td>
-			</tr>
-		<br>
-	</c:forEach>
+		<c:forEach items="${boardList}" var="board" varStatus="status">
+				<tr>
+					<td>[${board.id}]</td>
+					<td><a href="/board/read?id=${board.id}">${board.title}</a></td>
+					<td>${board.rgstDate}</td>
+					<td><a href="/board/delete?id=${board.id}">삭제</a></td>
+				</tr>
+			<br>
+		</c:forEach>
 	</table>
 </body>
 </html>
