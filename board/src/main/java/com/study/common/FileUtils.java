@@ -24,7 +24,6 @@ public class FileUtils
 
 	public List<BoardFile> uploadFileInfo(Board board, MultipartHttpServletRequest mpRequest) throws Exception
 	{
-		// MultipartHttpServletRequest mpRequest = (MultipartHttpServletRequest) req;
 		Iterator<String> iterator = mpRequest.getFileNames();
 
 		MultipartFile multipartFile = null;

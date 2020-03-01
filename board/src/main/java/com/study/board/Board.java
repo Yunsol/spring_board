@@ -39,11 +39,14 @@ public class Board
 	/** 등록 일시 */
 	@Generated(GenerationTime.INSERT)
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "rgst_date", insertable = false)
+	@Column(name = "rgst_date", insertable = false, updatable = false)
 	private Date rgstDate;
 
 	@OneToMany(mappedBy = "board", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<BoardFile> boardFiles = new ArrayList<BoardFile>();
+
+	@Column(name = "pswd", nullable = false)
+	private String pswd;
 
 	/** 페이지 번호 */
 	private String pageNum = "1";
@@ -145,4 +148,13 @@ public class Board
 		this.boardFiles = files;
 	}
 
+	public String getPswd()
+	{
+		return pswd;
+	}
+
+	public void setPswd(String pswd)
+	{
+		this.pswd = pswd;
+	}
 }

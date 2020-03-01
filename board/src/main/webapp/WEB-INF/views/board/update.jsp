@@ -16,6 +16,7 @@
 	<section id="container">
 		<form role="form" method="post" action="${pageContext.request.contextPath}/board/updateSave">
 		<input type="hidden" name="id" value="${board.id}" readonly="readonly"/>
+		<input type="hidden" name="pswd" value="${board.pswd}" readonly="readonly"/>
 			<table>
 				<tbody>
 					<tr>

@@ -9,6 +9,7 @@ PRIMARY KEY(ID)
 
 
 alter table board modify rgst_date datetime default now();
+alter table board add pswd varchar(100) not null default '0';
 
 
 create table files(

@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", function(){
 	<div class="continer">
 	BOARD WRITE PAGE
 	<section id="container">
+		<a href="${pageContext.request.contextPath}/">목록</a>
 		<form role="form" method="post" action="${pageContext.request.contextPath }/board/save" enctype="multipart/form-data">
 			<table>
 				<tbody>
@@ -32,6 +33,11 @@ document.addEventListener("DOMContentLoaded", function(){
 							<label for="content">내용</label><textarea id="content" name="content" ></textarea>
 						</td>
 					</tr>
+					<tr>
+						<td>
+							<label for="pswd">글 비밀번호</label><input type="password" name="pswd"/>
+						</td>
+					</tr>
 				</tbody>			
 			</table>
 			<div>
@@ -39,7 +45,6 @@ document.addEventListener("DOMContentLoaded", function(){
 			</div>
 			<div>
 				<button type="submit">작성</button>
-				<button onclick="location.href=${pageContext.request.contextPath}/">목록</button>
 			</div>
 		</form>
 	</section>

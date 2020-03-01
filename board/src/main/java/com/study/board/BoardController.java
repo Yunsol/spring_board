@@ -59,18 +59,27 @@ public class BoardController
 	public ModelAndView read(Long id, Model model) throws Exception
 	{
 		Board board = boardService.readBoard(id);
-		System.out.println(board.getBoardFiles().size());
 		model.addAttribute("board", board);
 		ModelAndView mv = new ModelAndView("board/read");
 		return mv;
 	}
 
-	@RequestMapping(value = "/board/update", method = RequestMethod.GET)
-	public ModelAndView goUpdate(Long id, Model model)
+	@RequestMapping(value = "/board/update", method = RequestMethod.POST)
+	public ModelAndView goUpdate(Long id, String pswd, Model model)
 	{
 		Board board = boardService.readBoard(id);
+		ModelAndView mv = new ModelAndView();
 		model.addAttribute("board", board);
-		ModelAndView mv = new ModelAndView("board/update");
+		if (board.getPswd().equals(pswd))
+		{
+			mv.setViewName("board/update");
+		}
+		else
+		{
+			model.addAttribute("wrongPswd", true);
+			mv.addObject("id", id);
+			mv.setViewName("board/check.pswd");
+		}
 		return mv;
 	}
 
@@ -101,5 +110,14 @@ public class BoardController
 		response.getOutputStream().write(fileByte);
 		response.getOutputStream().flush();
 		response.getOutputStream().close();
+	}
+
+	@RequestMapping(value = "/board/checkPswd", method = RequestMethod.GET)
+	public ModelAndView checkPswd(Long id, Model model)
+	{
+		Board board = boardService.readBoard(id);
+		model.addAttribute("board", board);
+		ModelAndView mv = new ModelAndView("board/check.pswd");
+		return mv;
 	}
 }
